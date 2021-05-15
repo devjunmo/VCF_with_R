@@ -5,6 +5,7 @@
 # hard
 
 csv_dir = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Teratoma_specifics\\filter_subsets\\'
+csv_dir_ips = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\IPS_specifics\\filter_subsets\\'
 
 snp_teratoma_path_lst = list.files(path = csv_dir, 
                                    pattern = "filter_subset_SNP_Teratoma*")
@@ -12,9 +13,14 @@ snp_teratoma_path_lst = list.files(path = csv_dir,
 indel_teratoma_path_lst = list.files(path = csv_dir, 
                                      pattern = "filter_subset_INDEL_Teratoma*")
 
+snp_IPS_path_lst = list.files(path = csv_dir_ips, 
+                              pattern = "filter_subset_SNP_hiPS*")
+
 
 length(snp_teratoma_path_lst)
 length(indel_teratoma_path_lst)
+
+length(snp_IPS_path_lst)
 
 
 DP = 20
@@ -293,15 +299,8 @@ old.mfrow = par(mfrow=c(3, 5))
 
 for (path in snp_teratoma_path_lst) {
   str1 = strsplit(path, split = "_")[[1]][4]
-  name = strsplit(str1, split="\\.")[[1]][1]
-  print(name)
-  
-  x_type = ifelse(length(X100[X100 == name] == 1), '100X',
-                  ifelse(length(X200[X200 == name]) == 1, '200X', NULL))
-  
-  x_col = ifelse(length(X100[X100 == name] == 1), 'magenta',
-                 ifelse(length(X200[X200 == name]) == 1, 'turquoise4', NULL))
-  
+  name_T = strsplit(str1, split="\\.")[[1]][1]
+  print(name_T)
   
   df = read.csv(paste0(csv_dir, path), header = T)
   df$CH_POS = paste(df$CHROM, df$POS, sep = '_')
@@ -320,12 +319,114 @@ for (path in snp_teratoma_path_lst) {
 
   plot(dp_mq_rng_df$MQ, dp_mq_rng_df$DP,
        xlim = c(50, 60.1), cex=0.4, col = 'red')
+
   
-  # mtext(text = x_type, col = x_col,
-  #       side=1, line=4.8, cex = 0.7)
+  # break
+}
+
+for (path in snp_IPS_path_lst) {
+  str1 = strsplit(path, split = "_")[[1]][4]
+  name_I = strsplit(str1, split="\\.")[[1]][1]
+  print(name_I)
+
+  df = read.csv(paste0(csv_dir_ips, path), header = T)
+  df$CH_POS = paste(df$CHROM, df$POS, sep = '_')
+  print(head(df))
+  print(dim(df))
+  
+  print(dim(df[df$DP < DP, ]))
+  print(head(df[df$DP < DP, ]))
+  
+  dp_rng = df[df$DP > 10 && df$DP < 200, ]
+  
+  dp_mq_rng_df = dp_rng[dp_rng$MQ >= 50, ]
+  dp_mq_rng_df
+  
+  # dp_mq_rng_df$MQ = round(dp_mq_rng_df$MQ)
+  
+  plot(dp_mq_rng_df$MQ, dp_mq_rng_df$DP,
+       xlim = c(50, 60.1), cex=0.4, col = 'blue')
+  
   
   break
 }
+
+
+
+old.par = par(mai=c(1, 1.0, 0.7, 0.3))
+old.mfrow = par(mfrow=c(3, 5))
+
+# 
+# length(snp_teratoma_path_lst)
+
+for (i in  1:length(snp_teratoma_path_lst)){
+  str1 = strsplit(snp_teratoma_path_lst[i], split = "_")[[1]][4]
+  name_T = strsplit(str1, split="\\.")[[1]][1]
+  print(name_T)
+  
+  x_type = ifelse(length(X100[X100 == name_T] == 1), '100X',
+                  ifelse(length(X200[X200 == name_T]) == 1, '200X', NULL))
+
+  x_col = ifelse(length(X100[X100 == name_T] == 1), 'magenta',
+                 ifelse(length(X200[X200 == name_T]) == 1, 'turquoise4', NULL))
+  
+  df_t = read.csv(paste0(csv_dir, snp_teratoma_path_lst[i]), header = T)
+  df_t$CH_POS = paste(df_t$CHROM, df_t$POS, sep = '_')
+  print(head(df_t))
+  print(dim(df_t))
+  print(dim(df_t[df_t$DP < DP, ]))
+  print(head(df_t[df_t$DP < DP, ]))
+  
+  dp_rng_t = df_t[df_t$DP > 10 && df_t$DP < 200, ]
+  
+  dp_mq_rng_df_t = dp_rng_t[dp_rng_t$MQ >= 50, ]
+  dp_mq_rng_df_t
+  
+  plot(dp_mq_rng_df_t$MQ, dp_mq_rng_df_t$DP,
+       xlim = c(50, 60.1), ylim =c(0,  1200), cex=0.4, col = 'red',
+       pch=18, xlab = 'MQ', ylab='DP')
+  
+  #break
+  
+  str1 = strsplit(snp_IPS_path_lst[i], split = "_")[[1]][4]
+  name_I = strsplit(str1, split="\\.")[[1]][1]
+  print(name_I)
+  
+  df_i = read.csv(paste0(csv_dir_ips, snp_IPS_path_lst[i]), header = T)
+  df_i$CH_POS = paste(df_i$CHROM, df_i$POS, sep = '_')
+  print(head(df_i))
+  print(dim(df_i))
+  
+  print(dim(df_i[df_i$DP < DP, ]))
+  print(head(df_i[df_i$DP < DP, ]))
+  
+  dp_rng_i = df_i[df_i$DP > 10 && df_i$DP < 200, ]
+  
+  dp_mq_rng_df_i = dp_rng_i[dp_rng_i$MQ >= 50, ]
+  dp_mq_rng_df_i
+  
+  points(dp_mq_rng_df_i$MQ, dp_mq_rng_df_i$DP,
+         xlim = c(45, 60.1), ylim = c(0,  1200), cex=0.4, col = 'blue',
+         pch=18)
+  
+  mtext(text = x_type, col = x_col,
+         side=1, line=4.8, cex = 0.7)
+
+  legend(50, 1200, legend = c("Teratoma", "IPS"),
+         pch=18, col = c('red', 'blue'),
+         title = 'MQ & DP plot')
+  
+  mtext(text = name_T,
+        side=3, line=1, srt = 90, cex = 0.8)
+  mtext(text = name_I,
+        side=3, line=2.3, srt = 90, cex = 0.8)
+  # break
+  
+}
+
+?pch
+?leg
+
 
 par(old.par)
 par(old.mfrow)
