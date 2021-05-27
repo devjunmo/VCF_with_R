@@ -61,4 +61,3 @@ write.xlsx(T6.bed, file = "SNP_Teratoma-6.xlsx")
 
 
 
-
