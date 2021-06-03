@@ -117,6 +117,7 @@ for (i in 1:range(length(name_vector))){
   write.table(bed_f, sep='\t', file=output_bed, quote = F,
               row.names = F, col.names = F)
   write.xlsx(bed_f, file = output_xlsx)
+  
 }
 
 
