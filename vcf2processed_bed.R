@@ -3,14 +3,19 @@
 # PASS / DP / GT
 # GT, PASS 코딩
 
+# install.packages('bedr')
+
 library(bedr)
 library(dplyr)
 library(stringr)
 
-input_dir = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\'
-output_dir_name = 'processed_teratoma_sample_bed_210604\\'
+
+# input_dir = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\'
+input_dir = '/data_244/WES/Terat_specific_210604/'
+output_dir_name = 'teratoma_specific_processed_bed_210604/'
 output_dir = paste0(input_dir, output_dir_name)
-patt_prefix = '^hard*'
+# patt_prefix = '^hard*'
+# patt_surfix = '.vcf.gz$'
 patt_surfix = '.vcf.gz$'
 
 old.wd <- setwd(input_dir)
@@ -21,8 +26,10 @@ if (!dir.exists(output_dir_name)){
 }
 
 
-file_list = list.files(input_dir, pattern = patt_prefix) # hardFiltered ~ 
-file_list = file_list[str_detect(file_list, pattern = patt_surfix)] # ~ vcf.gz
+# file_list = list.files(input_dir, pattern = patt_prefix) # hardFiltered ~ 
+# file_list = file_list[str_detect(file_list, pattern = patt_surfix)] # ~ vcf.gz
+
+file_list = list.files(input_dir, pattern = patt_surfix) 
 
 print(file_list)
 
