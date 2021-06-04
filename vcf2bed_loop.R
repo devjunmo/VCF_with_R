@@ -89,6 +89,7 @@ for (i in 1:range(length(name_vector))){
   output_xlsx = paste0(name_vector[i], '.xlsx')
   
   vcf_f <- read.vcf(vcf_path)
+  
   # print(class(vcf_f)) # "list"
   # print(class(vcf_f$vcf)) # "data.table" "data.frame"
   # print(class(vcf_f$vcf$INFO)) # "character" << vector

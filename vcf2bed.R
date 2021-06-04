@@ -5,7 +5,7 @@
 
 library(bedr)
 
-T6_specific_SNP_path = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Teratoma_specifics\\SNP_Teratoma-6.vcf.gz'
+T6_specific_SNP_path = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Teratoma_specifics_pass_only\\SNP_Teratoma-6.vcf.gz'
 
 out_path = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Teratoma_specifics\\bed\\SNP_Teratoma-6.bed'
 
@@ -42,6 +42,7 @@ out_path = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Teratoma_specifics
 T6_specific_SNP_vcf <- read.vcf(T6_specific_SNP_path)
 ?vcf2bed
 T6.bed <- vcf2bed(T6_specific_SNP_vcf, other = c('REF', 'ALT'))
+
 
 head(T6.bed)
 

@@ -29,3 +29,52 @@ d3
 d3 <- d3[c(1, 3),]
 
 d3
+
+
+test <- iris
+head(test)
+class(test)
+
+test.index
+
+test <- test[-1, ]
+head(test)
+
+test <- test[-2, ]
+head(test)
+
+
+rm_idx = c()
+rm_idx = c(rm_idx, 1, 2, 2, 5)
+rm_idx
+
+rm_idx = unique(rm_idx)
+rm_idx
+
+head(test)
+head(test[-rm_idx, ])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
