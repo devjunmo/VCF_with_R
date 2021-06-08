@@ -1,7 +1,10 @@
 
 library(bedr)
 
-wd = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Td30_Odx\\pass_only_Teratoma_specifics\\'
+# wd = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Td30_Odx\\pass_only_Teratoma_specifics\\'
+wd = '/data_244/WES/T_DP_O_NDP_samples/pass_only_Teratoma_specifics/'
+# wd = '/data_244/WES/no_DP_filter_samples/pass_only_Teratoma_specifics/'
+
 patt = '*.vcf.gz'
 
 setwd(wd)
@@ -11,7 +14,8 @@ if (!dir.exists('bed')){
   dir.create('bed')
 }
 
-bed_root_dir = paste0(wd, 'bed\\')
+# bed_root_dir = paste0(wd, 'bed\\')
+bed_root_dir = paste0(wd, 'teratoma_specific_processed_bed_210606/')
 
 setwd(bed_root_dir)
 getwd()
@@ -44,14 +48,14 @@ path_vector
 for (i in 1:range(length(name_vector))){
   
   T_specific_vcf <- read.vcf(path_vector[i])
-  T.bed <- vcf2bed(T_specific_vcf)
+  T.bed <- vcf2bed(T_specific_vcf, other=c('REF', 'ALT'))
   output_path = paste0(name_vector[i],'.bed')
   
   write.table(T.bed, sep='\t', file=output_path, quote = F,
               row.names = F, col.names = F)
 }
 
-
+# ?vcf2bed
 
 
 

@@ -3,7 +3,7 @@
 # PASS / DP / GT
 # GT, PASS 코딩
 
-# install.packages('bedr')
+#install.packages('stringr')
 
 library(bedr)
 library(dplyr)
@@ -11,15 +11,17 @@ library(stringr)
 
 
 # input_dir = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\'
-input_dir = '/data_244/WES/Terat_specific_210604/'
-output_dir_name = 'teratoma_specific_processed_bed_210604/'
+# input_dir = '/data_244/WES/no_DP_filter_samples/pass_only_Teratoma_specifics/'
+# input_dir = '/data_244/WES/T_DP_O_NDP_samples/'
+input_dir = '/data_244/WES/T_DP_O_NDP_samples/pass_only_Teratoma_specifics/'
+output_dir_name = 'teratoma_specific_processed_bed_210606/'
 output_dir = paste0(input_dir, output_dir_name)
 # patt_prefix = '^hard*'
 # patt_surfix = '.vcf.gz$'
 patt_surfix = '.vcf.gz$'
 
 old.wd <- setwd(input_dir)
-getwd()
+# getwd()
 
 if (!dir.exists(output_dir_name)){
   dir.create(output_dir_name)
@@ -99,10 +101,10 @@ for (i in 1:range(length(name_vector))){
 setwd(old.wd)
 
 
-?bedr
-?read.vcf
-?write.vcf
-?write.table
+#?bedr
+#?read.vcf
+#?write.vcf
+#?write.table
 
 
 
