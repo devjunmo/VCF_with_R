@@ -13,8 +13,8 @@ library(stringr)
 # input_dir = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\'
 # input_dir = '/data_244/WES/no_DP_filter_samples/pass_only_Teratoma_specifics/'
 # input_dir = '/data_244/WES/T_DP_O_NDP_samples/'
-input_dir = '/data_244/WES/T_DP_O_NDP_samples/pass_only_Teratoma_specifics/'
-output_dir_name = 'teratoma_specific_processed_bed_210606/'
+input_dir = '/data_244/WES/Tsp_annotation_210608/no_DP_filter/'
+output_dir_name = 'teratoma_specific_processed_bed_210609/'
 output_dir = paste0(input_dir, output_dir_name)
 # patt_prefix = '^hard*'
 # patt_surfix = '.vcf.gz$'
@@ -87,7 +87,7 @@ for (i in 1:range(length(name_vector))){
   
   sample_vcf$vcf <- vcf_part
   
-  T.bed <- vcf2bed(sample_vcf)
+  T.bed <- vcf2bed(sample_vcf, other = c('REF', 'ALT'))
 
   output_name = paste0(output_dir_name, name_vector[i],'.bed')
   

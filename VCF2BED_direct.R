@@ -2,6 +2,7 @@
 library(bedr)
 
 # wd = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\Td30_Odx\\pass_only_Teratoma_specifics\\'
+# wd = '/data_244/WES/T_DP_O_NDP_samples/pass_only_Teratoma_specifics/'
 wd = '/data_244/WES/T_DP_O_NDP_samples/pass_only_Teratoma_specifics/'
 # wd = '/data_244/WES/no_DP_filter_samples/pass_only_Teratoma_specifics/'
 
