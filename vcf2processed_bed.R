@@ -13,12 +13,19 @@ library(stringr)
 # input_dir = 'D:\\junmo\\wd\\WES\\data\\vcf\\hard\\WES1_210420\\'
 # input_dir = '/data_244/WES/no_DP_filter_samples/pass_only_Teratoma_specifics/'
 # input_dir = '/data_244/WES/T_DP_O_NDP_samples/'
-input_dir = '/data_244/WES/Tsp_annotation_210608/no_DP_filter/'
-output_dir_name = 'teratoma_specific_processed_bed_210609/'
+# input_dir = '/data_244/VCF/gatherd_WGS_WES/WES_specific/'
+# input_dir = '/data_244/VCF/gatherd_WGS_WES/WGS_specific/'
+# input_dir = '/data_244/VCF/gatherd_WGS_WES_interval_apply/WES_specific/'
+# input_dir = '/data_244/WGS/HN00146173/gs/hardfiltered/'
+# input_dir = '/data_244/VCF/1000G_VCF_sample/WGS/vcf_file/'
+input_dir = '/data_244/WGS/HN00146173/gs/hardfiltered/interval_apply_vcf/'
+
+output_dir_name = 'processed_bed/'
 output_dir = paste0(input_dir, output_dir_name)
 # patt_prefix = '^hard*'
 # patt_surfix = '.vcf.gz$'
 patt_surfix = '.vcf.gz$'
+# patt_surfix = '.vcf$'
 
 old.wd <- setwd(input_dir)
 # getwd()
